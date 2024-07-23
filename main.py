@@ -2,8 +2,11 @@ import os
 import customtkinter as ctk
 from openai import OpenAI
 from dotenv import load_dotenv
+import PIL
+from PIL import Image
 
 load_dotenv()
+
 
 
 def generate():
@@ -37,8 +40,21 @@ root = ctk.CTk()
 root.geometry("750x550")
 root.title("ChatGPT Projects Idea Generator")
 
+image = PIL.Image.open('Grollow/bg.jpg')
+background_image = ctk.CTkImage(image, size=(1500, 1100))
+
+bg_lbl = ctk.CTkLabel(root, text="", image=background_image)
+bg_lbl.place(x=0, y=0)
+
+logo_image = ctk.CTkImage(Image.open('Grollow/grim.png'), size=(200, 200))
+
+lo_lbl = ctk.CTkLabel(root, text="", image=logo_image)
+lo_lbl.place(x=365, y=10)
+
 ctk.set_appearance_mode("dark")
 
+label = ctk.CTkLabel(root, text="Rollow", fg_color="transparent",font=ctk.CTkFont(size=100, weight="bold"))
+label.pack(padx=10, pady=(40,20))
 title_label = ctk.CTkLabel(root, text="Project Idea Generator",
                           font=ctk.CTkFont(size=30, weight="bold"))
 title_label.pack(padx=10, pady=(40,20))
@@ -84,12 +100,14 @@ checkbox2.pack(side="left", padx=50, pady=10)
 button = ctk.CTkButton(frame, text="Generate Ideas", command=generate)
 button.pack(pady=10, fill="x", padx=(5, 20))
 
-result = ctk.CTkTextbox(root, font=ctk.CTkFont(size=15))
-result.pack(pady=10, fill="x", padx=100)
+#result = ctk.CTkTextbox(root, font=ctk.CTkFont(size=15))
+#result.pack(pady=10, fill="x", padx=100)
 
+textbox = ctk.CTkTextbox(root)
 
-
-
+textbox.insert("0.0", "new text to insert")  # insert at line 0 character 0
+text = textbox.get("0.0", "end")  # get text from line 0 character 0 till the end
+textbox.pack(pady=10, fill="x", padx=100)
 
 root.mainloop()
 
