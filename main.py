@@ -7,7 +7,11 @@ from PIL import Image
 
 load_dotenv()
 
+import customtkinter as ctk 
 
+
+# Selecting GUI theme - dark, light , system (for system default) 
+ctk.set_appearance_mode("dark") 
 
 def generate():
     prompt = "Please generate 10 ideas for coding projects"
@@ -40,24 +44,28 @@ root = ctk.CTk()
 root.geometry("750x550")
 root.title("ChatGPT Projects Idea Generator")
 
-image = PIL.Image.open('Grollow/bg.jpg')
+image = PIL.Image.open('bg.jpg')
 background_image = ctk.CTkImage(image, size=(1500, 1100))
 
 bg_lbl = ctk.CTkLabel(root, text="", image=background_image)
 bg_lbl.place(x=0, y=0)
 
-logo_image = ctk.CTkImage(Image.open('Grollow/grim.png'), size=(200, 200))
+frame = ctk.CTkFrame(master=root, width=2000, height=210)
+frame.pack(padx=10, pady=(0,20))
+
+logo_image = ctk.CTkImage(Image.open('grim.png'), size=(200, 200))
 
 lo_lbl = ctk.CTkLabel(root, text="", image=logo_image)
 lo_lbl.place(x=365, y=10)
 
 ctk.set_appearance_mode("dark")
 
-label = ctk.CTkLabel(root, text="Rollow", fg_color="transparent",font=ctk.CTkFont(size=100, weight="bold"))
-label.pack(padx=10, pady=(40,20))
-title_label = ctk.CTkLabel(root, text="Project Idea Generator",
+
+label = ctk.CTkLabel(root, text="rollow", fg_color="transparent",font=ctk.CTkFont(size=100, weight="bold"))
+label.place(x=600, y=50)
+title_label = ctk.CTkLabel(root, text="Anime Idea Generator",
                           font=ctk.CTkFont(size=30, weight="bold"))
-title_label.pack(padx=10, pady=(40,20))
+title_label.pack(padx=10, pady=(10,10))
 
 frame = ctk.CTkFrame(root)
 frame.pack(fill="x", padx=100)
@@ -65,10 +73,10 @@ frame.pack(fill="x", padx=100)
 language_frame = ctk.CTkFrame(frame)
 language_frame.pack(padx=100, pady=(20, 5), fill="both")
 language_label = ctk.CTkLabel(
-     language_frame, text="Programing Language", font=ctk.CTkFont(weight="bold"))
+     language_frame, text="Genere", font=ctk.CTkFont(weight="bold"))
 language_label.pack()
 language_dropdown = ctk.CTkComboBox(
-    language_frame, values=["Python", "Java", "C++", "JavaScript", "Golang"])
+    language_frame, values=["Action", "Fantasy", "Adventure", "Sports", "Supernatural", "Thriller",])
 language_dropdown.pack(pady=10)
 
 difficulty_frame = ctk.CTkFrame(frame)
@@ -100,8 +108,8 @@ checkbox2.pack(side="left", padx=50, pady=10)
 button = ctk.CTkButton(frame, text="Generate Ideas", command=generate)
 button.pack(pady=10, fill="x", padx=(5, 20))
 
-#result = ctk.CTkTextbox(root, font=ctk.CTkFont(size=15))
-#result.pack(pady=10, fill="x", padx=100)
+result = ctk.CTkTextbox(root, font=ctk.CTkFont(size=15))
+result.pack(pady=10, fill="x", padx=100)
 
 textbox = ctk.CTkTextbox(root)
 
